@@ -39,6 +39,16 @@ class RsControllerTest {
     }
 
     @Test
+    void shouldGetRsEventsFromStartToEnd() throws Exception {
+        mockMvc.perform(get("/rs/list/?start=2&end=3"))
+                .andExpect(jsonPath("$[0].eventName", is("第二条事件")))
+                .andExpect(jsonPath("$[0].keyWord", is("无分类")))
+                .andExpect(jsonPath("$[1].eventName", is("第三条事件")))
+                .andExpect(jsonPath("$[1].keyWord", is("无分类")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void shouldAddOneRsEvent() throws Exception {
         String requestJson = "{\"eventName\":\"第四条事件\",\"keyword\":\"分类四\"}";
         mockMvc.perform(post("/rs/event").content(requestJson).contentType(MediaType.APPLICATION_JSON))
