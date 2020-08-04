@@ -40,5 +40,10 @@ public class RsController {
     RsEvent rsEvent = objectMapper.readValue(rsEventString, RsEvent.class);
     rsList.add(rsEvent);
   }
+  @PostMapping("/rs/delete/{index}")
+  public void deldteOneEvent(@PathVariable int index) throws JsonProcessingException {
+    if(index<rsList.size())
+    rsList.remove(index-1);
+  }
 }
 
