@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.rslist.domain.RsEvent;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 public class RsController {
@@ -22,6 +20,10 @@ public class RsController {
     result.add(new RsEvent("第三条事件", "无分类"));
     return result;
   }
+  @GetMapping("/rs/{index}")
+  public RsEvent getOne(@PathVariable int index) {
+    return rsList.get(index - 1);
+  }
 
   @GetMapping("/rs/list")
   public List<RsEvent> getList(@RequestParam(required = false) Integer start,
@@ -32,11 +34,10 @@ public class RsController {
     return rsList.subList(start - 1, end);
   }
 
-  @PostMapping("/rs/add")
-  public void addOneRsEvent(@RequestBody String rsEventString) throws JsonProcessingException
-  {
-    ObjectMapper objectMapper=new ObjectMapper();
-    RsEvent rsEvent=objectMapper.readValue(rsEventString,RsEvent.class);
+  @PostMapping("/rs/event")
+  public void addOneEvent(@RequestBody String rsEventString) throws JsonProcessingException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    RsEvent rsEvent = objectMapper.readValue(rsEventString, RsEvent.class);
     rsList.add(rsEvent);
   }
 }
