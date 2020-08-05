@@ -86,6 +86,15 @@ class RsControllerTest {
                     .andExpect(jsonPath("$[2].user.phone",is("11234567890")))
                     .andExpect(status().isOk());
         }
+    @Test
+    void shouldReturnExceptionWhenAddOndRsEventWithInvalidUser() throws Exception {
+        String requestJson=  "{\"eventName\":\"添加一条热搜\"," + " \"keyword\":\"娱乐\"," +"\"user\" :{\"name\":\"xiaowang\",  \"age\":10,\"gender\":\"female\", \"email\":\"a@thoughtworks.com\", \"phone\":\"18888888888\"}}";
+        mockMvc.perform(post("/rs/add")
+                .content(requestJson)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error",is("invalid param")));
+    }
 
      @Test
         void shouldAddOneRsEvent() throws Exception {

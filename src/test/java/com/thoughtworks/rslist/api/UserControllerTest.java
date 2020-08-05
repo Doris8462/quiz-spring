@@ -9,11 +9,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.hamcrest.Matchers.is;
 
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -51,7 +53,8 @@ class UserControllerTest {
         ObjectMapper objectMapper=new ObjectMapper();
         String userJson=objectMapper.writeValueAsString(user);
         mockMvc.perform(post("/user").content(userJson).contentType
-                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
+                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error",is("invalid param")));
     }
     @Test
     void genderShouldNotNull()throws Exception {

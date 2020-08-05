@@ -6,6 +6,7 @@ import com.thoughtworks.rslist.exception.CommenError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jmx.access.InvalidInvocationException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -70,10 +71,4 @@ public class RsController {
     return ResponseEntity.created(null).body(index);
   }
 
-  @ExceptionHandler(InvalidInvocationException.class)
-  public ResponseEntity exceptionHandler(InvalidInvocationException ex){
-    CommenError commError =new CommenError();
-    commError.setError(ex.getMessage());
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commError);
-  }
 }
