@@ -1,22 +1,30 @@
-package com.thoughtworks.rslist.domain;
+package com.thoughtworks.rslist.api;
 
 public class RsEvent {
     private String eventName;
-    private String keyWord;
-    public RsEvent(String eventName,String keyWord){
-        this.eventName=eventName;
-        this.keyWord=keyWord;
+    private String keyword;
+
+    public RsEvent() {
     }
-    public String getEventName(){
+
+    public RsEvent(String eventName, String keyword) {
+        this.eventName = eventName;
+        this.keyword = keyword;
+    }
+
+    public String getEventName() {
         return eventName;
     }
-    public String getKeyWord(){
-        return keyWord;
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
-    public void setEventName(String eventName){
-        this.eventName=eventName;
+
+    public String getKeyword() {
+        return keyword;
     }
-    public void setKeyWord(String keyWord){
-        this.keyWord=keyWord;
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
