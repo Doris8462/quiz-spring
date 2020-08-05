@@ -61,6 +61,22 @@ class UserControllerTest {
         mockMvc.perform(post("/user").content(userJson).contentType
                 (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
     }
+    @Test
+    void ageShouldNotLessThan18()throws Exception {
+        User user=new User("Alibaba",17,"male","a@b.com","11234567890");
+        ObjectMapper objectMapper=new ObjectMapper();
+        String userJson=objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/user").content(userJson).contentType
+                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
+    }
+    @Test
+    void ageShouldNotMoreThan100()throws Exception {
+        User user=new User("Alibaba",101,"male","a@b.com","11234567890");
+        ObjectMapper objectMapper=new ObjectMapper();
+        String userJson=objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/user").content(userJson).contentType
+                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
+    }
 }
 
 

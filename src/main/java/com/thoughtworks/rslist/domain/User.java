@@ -14,6 +14,8 @@ public class User {
     private String name;
 @NotNull
     private String gender;
+@Min(18)
+@Max(100)
     private int age;
     private String email;
     private String phone;
