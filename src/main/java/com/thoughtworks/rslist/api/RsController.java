@@ -49,7 +49,7 @@ public class RsController {
   }
 
   @PostMapping("/rs/update/{index}")
-  public void updateRsEvent(@PathVariable int index, @RequestBody RsEvent rsEvent) {
+  public void updateRsEvent(@PathVariable int index, @RequestBody @Valid RsEvent rsEvent) {
     if(rsEvent.getEventName()!=null) rsList.get(index - 1).setEventName(rsEvent.getEventName());
     if (rsEvent.getKeyword() != null) rsList.get(index - 1).setKeyword(rsEvent.getKeyword());
   }

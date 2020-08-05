@@ -200,4 +200,15 @@ class RsControllerTest {
                     .andExpect(jsonPath("$[0].keyword", is("无分类")))
                     .andExpect(status().isOk());
         }
+    @Test
+    void nameShouldNotNull()throws Exception {
+        User user = new User("xiaowang", 19, "female", "a@thoughtworks.com", "18888888888");
+        RsEvent rsEvent = new RsEvent(null, "娱乐", user);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String userJson = objectMapper.writeValueAsString(rsEvent);
+
+        mockMvc.perform(post("/rs/add").content(userJson)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
     }

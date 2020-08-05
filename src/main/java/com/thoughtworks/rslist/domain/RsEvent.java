@@ -1,6 +1,14 @@
 package com.thoughtworks.rslist.domain;
 
+import com.thoughtworks.rslist.domain.User;
+import lombok.Data;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+@Data
 public class RsEvent {
+    @NotNull
     private String eventName;
     private String keyword;
     private User user;
