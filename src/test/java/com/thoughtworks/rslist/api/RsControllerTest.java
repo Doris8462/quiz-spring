@@ -87,13 +87,13 @@ class RsControllerTest {
                     .andExpect(status().isOk());
         }
 
-    /*   @Test
+     @Test
         void shouldAddOneRsEvent() throws Exception {
            String requestJson=  "{\"eventName\":\"添加一条热搜\"," + " \"keyword\":\"娱乐\"," +"\"user\" :{\"name\":\"xiaowang\",  \"age\":19,\"gender\":\"female\", \"email\":\"a@thoughtworks.com\", \"phone\":\"18888888888\"}}";
             mockMvc.perform(post("/rs/add")
                     .content(requestJson)
                     .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isCreated());
 
             mockMvc.perform(get("/rs/list"))
                     .andExpect(jsonPath("$[3].eventName", is("添加一条热搜")))
@@ -105,7 +105,6 @@ class RsControllerTest {
                     .andExpect(jsonPath("$[3].user.phone",is("18888888888")))
                     .andExpect(status().isOk());
         }
-     */
     @Test
     void shouldAddOneRsEventUserNotExist() throws Exception {
         assertEquals(0, UserController.users.size());
