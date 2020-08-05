@@ -13,10 +13,10 @@ public class RsEvent {
     public String getKeyWord(){
         return keyWord;
     }
-    public void setEventName(){
+    public void setEventName(String eventName){
         this.eventName=eventName;
     }
-    public void setKeyWord(){
+    public void setKeyWord(String keyWord){
         this.keyWord=keyWord;
     }
 }

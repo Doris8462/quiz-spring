@@ -45,5 +45,10 @@ public class RsController {
     if(index<rsList.size())
     rsList.remove(index-1);
   }
+  @PostMapping("/rs/modify/{index}")
+  public void updateRsEvent(@PathVariable int index, @RequestBody RsEvent rsEvent) {
+    if(rsEvent.getEventName()!=null) rsList.get(index - 1).setEventName(rsEvent.getEventName());
+    if (rsEvent.getKeyWord() != null) rsList.get(index - 1).setKeyWord(rsEvent.getKeyWord());
+  }
 }
 
