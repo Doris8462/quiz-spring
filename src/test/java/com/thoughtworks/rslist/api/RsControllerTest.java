@@ -182,7 +182,7 @@ class RsControllerTest {
             mockMvc.perform(post("/rs/update/1")
                     .content(requestJsonAll)
                     .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isCreated());
             mockMvc.perform(get("/rs/list/1"))
                     .andExpect(jsonPath("$.eventName", is("要修改的事件")))
                     .andExpect(jsonPath("$.keyword", is("要修改的分类")))
@@ -192,7 +192,7 @@ class RsControllerTest {
         @Test
         void shouldDeleteRsEventGivenIndex() throws Exception {
             mockMvc.perform(post("/rs/delete/1"))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isCreated());
 
             mockMvc.perform(get("/rs/list"))
                     .andExpect(jsonPath("$[0].eventName", is("第二条事件")))
@@ -208,6 +208,6 @@ class RsControllerTest {
 
         mockMvc.perform(post("/rs/add").content(userJson)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isCreated());
     }
     }

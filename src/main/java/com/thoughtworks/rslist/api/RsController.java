@@ -30,12 +30,12 @@ public class RsController {
   }
 
   @GetMapping("/rs/list")
-  public List<RsEvent> getRsEvent(@RequestParam(required = false) Integer start,
+  public ResponseEntity<List<RsEvent>> getRsEvent(@RequestParam(required = false) Integer start,
                                   @RequestParam(required = false) Integer end) {
     if (start == null || end == null) {
-      return rsList;
+      return ResponseEntity.ok(rsList);
     }
-    return rsList.subList(start - 1, end);
+    return ResponseEntity.ok(rsList.subList(start - 1, end));
   }
 
   @PostMapping("/rs/add")
@@ -51,13 +51,15 @@ public class RsController {
   }
 
   @PostMapping("/rs/update/{index}")
-  public void updateRsEvent(@PathVariable int index, @RequestBody @Valid RsEvent rsEvent) {
+  ResponseEntity updateRsEvent(@PathVariable int index, @RequestBody @Valid RsEvent rsEvent) {
     if(rsEvent.getEventName()!=null) rsList.get(index - 1).setEventName(rsEvent.getEventName());
     if (rsEvent.getKeyword() != null) rsList.get(index - 1).setKeyword(rsEvent.getKeyword());
+    return ResponseEntity.created(null).body(index);
   }
 
   @PostMapping("/rs/delete/{index}")
-  public void deleteRsEvent(@PathVariable int index) {
+  ResponseEntity deleteRsEvent(@PathVariable int index) {
     rsList.remove(index - 1);
+    return ResponseEntity.created(null).body(index);
   }
 }
