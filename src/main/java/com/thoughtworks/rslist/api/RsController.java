@@ -4,6 +4,7 @@ import com.thoughtworks.rslist.domain.RsEvent;
 import com.thoughtworks.rslist.domain.User;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,11 @@ public class RsController {
   private List<RsEvent> init() {
     List<RsEvent> rsEvents = new ArrayList<>();
     rsEvents.add(new RsEvent("第一条事件", "无分类",
-            new User("A",18,"male","A@qq.com","1234567890")));
+            new User("A",18,"male","A@qq.com","11234567890")));
     rsEvents.add(new RsEvent("第二条事件", "无分类",
-            new User("B",28,"female","B@qq.com","1234567890")));
+            new User("B",28,"female","B@qq.com","11234567890")));
     rsEvents.add(new RsEvent("第三条事件", "无分类",
-            new User("C",38,"male","C@qq.com","1234567890")));
+            new User("C",38,"male","C@qq.com","11234567890")));
     return rsEvents;
   }
 
@@ -39,6 +40,12 @@ public class RsController {
   @PostMapping("/rs/add")
   public void addRsEvent(@RequestBody RsEvent rsEvent) {
     rsList.add(rsEvent);
+    for(User user:UserController.users){
+      if(rsEvent.getUser().getUserName().equals(user.getUserName())){
+        return ;
+      }
+    }
+    UserController.users.add(rsEvent.getUser());
   }
 
   @PostMapping("/rs/update/{index}")
