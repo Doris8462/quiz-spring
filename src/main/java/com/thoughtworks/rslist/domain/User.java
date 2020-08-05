@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 public class User {
 @Size(max = 8)
+@NotNull
     private String name;
     private String gender;
     private int age;
