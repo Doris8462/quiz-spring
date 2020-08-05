@@ -42,7 +42,7 @@ public class RsController {
   }
   @PostMapping("/rs/delete/{index}")
   public void deldteOneEvent(@PathVariable int index) throws JsonProcessingException {
-    if(index<rsList.size())
+    if(index<=rsList.size())
     rsList.remove(index-1);
   }
   @PostMapping("/rs/modify/{index}")
