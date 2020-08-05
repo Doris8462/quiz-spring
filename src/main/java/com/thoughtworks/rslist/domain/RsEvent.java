@@ -1,5 +1,7 @@
 package com.thoughtworks.rslist.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thoughtworks.rslist.domain.User;
 import lombok.Data;
 
@@ -37,8 +39,8 @@ public class RsEvent {
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
-
+//@JsonIgnore
     public User getUser() { return user; }
-
+//@JsonProperty
     public void setUser(User user) { this.user = user; }
 }

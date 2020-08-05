@@ -117,7 +117,7 @@ class RsControllerTest {
         mockMvc.perform(post("/rs/add")
                 .content(userJson)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(get("/rs/list"))
                 .andExpect(jsonPath("$[3].eventName", is("添加一条热搜")))
@@ -142,7 +142,7 @@ class RsControllerTest {
         mockMvc.perform(post("/rs/add")
                 .content(userJson)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(get("/rs/list"))
                 .andExpect(jsonPath("$[3].eventName", is("添加一条热搜")))
@@ -161,7 +161,7 @@ class RsControllerTest {
         mockMvc.perform(post("/rs/add")
                 .content(userJsonRepetUser)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(get("/rs/list"))
                 .andExpect(jsonPath("$[4].eventName", is("同一用户再次添加热搜")))
