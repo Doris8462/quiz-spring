@@ -1,6 +1,5 @@
 package com.thoughtworks.rslist.api;
 
-import com.thoughtworks.rslist.api.RsController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,8 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.rslist.domain.RsEvent;
-import com.thoughtworks.rslist.domain.UsersDetail;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.thoughtworks.rslist.domain.User;
 
 
 @SpringBootTest

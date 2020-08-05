@@ -1,16 +1,14 @@
 package com.thoughtworks.rslist.domain;
 
-import com.thoughtworks.rslist.domain.UsersDetail;
-
 public class RsEvent {
     private String eventName;
     private String keyword;
-    private UsersDetail user;
+    private User user;
 
     public RsEvent() {
     }
 
-    public RsEvent(String eventName, String keyword,UsersDetail user) {
+    public RsEvent(String eventName, String keyword, User user) {
         this.eventName = eventName;
         this.keyword = keyword;
         this.user=user;
@@ -32,7 +30,7 @@ public class RsEvent {
         this.keyword = keyword;
     }
 
-    public UsersDetail getUser() { return user; }
+    public User getUser() { return user; }
 
-    public void setUser(UsersDetail user) { this.user = user; }
+    public void setUser(User user) { this.user = user; }
 }

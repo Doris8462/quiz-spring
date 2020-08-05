@@ -5,28 +5,32 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UsersDetail {
+public class User {
 
-    private String userName;
-    private int age;
+    private String name;
     private String gender;
+    private int age;
     private String email;
-    private String phoneNumber;
+    private String phone;
+    private int vote=10;
 
-    public UsersDetail(String userName,int age,String gender,String email,String phoneNumber){
-        this.userName = userName;
+    public User(){
+    }
+
+    public User(String name, int age, String gender, String email, String phone){
+        this.name = name;
         this.age = age;
         this.gender = gender;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
     }
 
     public String getUserName() {
-        return userName;
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
@@ -53,11 +57,19 @@ public class UsersDetail {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
     }
 }
