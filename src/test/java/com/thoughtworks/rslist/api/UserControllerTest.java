@@ -77,6 +77,14 @@ class UserControllerTest {
         mockMvc.perform(post("/user").content(userJson).contentType
                 (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
     }
+    @Test
+    void emailShouldValid()throws Exception {
+        User user=new User("Alibaba",20,"male","ab.com","11234567890");
+        ObjectMapper objectMapper=new ObjectMapper();
+        String userJson=objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/user").content(userJson).contentType
+                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
+    }
 }
 
 
