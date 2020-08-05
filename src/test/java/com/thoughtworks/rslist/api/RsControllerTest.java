@@ -210,4 +210,10 @@ class RsControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+    @Test
+    void shouldReturnBadRerequestWhenIndexOutOfBound() throws Exception {
+        mockMvc.perform(get("/rs/list/10"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error", is("invalid index")));
+    }
     }

@@ -2,7 +2,10 @@ package com.thoughtworks.rslist.api;
 
 import com.thoughtworks.rslist.domain.RsEvent;
 import com.thoughtworks.rslist.domain.User;
+import com.thoughtworks.rslist.exception.CommenError;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jmx.access.InvalidInvocationException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,7 +28,11 @@ public class RsController {
   }
 
   @GetMapping("/rs/list/{index}")
-  public ResponseEntity<RsEvent> getOneRsEvent(@PathVariable int index) {
+  public ResponseEntity getOneRsEvent(@PathVariable int index) {
+    if(index>rsList.size()){
+
+      throw new InvalidInvocationException("invalid index");
+    }
     return ResponseEntity.ok(rsList.get(index - 1));
   }
 
@@ -61,5 +68,12 @@ public class RsController {
   ResponseEntity deleteRsEvent(@PathVariable int index) {
     rsList.remove(index - 1);
     return ResponseEntity.created(null).body(index);
+  }
+
+  @ExceptionHandler(InvalidInvocationException.class)
+  public ResponseEntity exceptionHandler(InvalidInvocationException ex){
+    CommenError commError =new CommenError();
+    commError.setError(ex.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commError);
   }
 }
