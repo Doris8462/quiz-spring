@@ -29,12 +29,21 @@ class UserControllerTest {
     }
 @Test
     void shouldRegisterUser() throws Exception {
-        User user=new User();
+        User user=new User("Alibaba",18,"male","a@b.com","11234567890");
         ObjectMapper objectMapper=new ObjectMapper();
         String userJson=objectMapper.writeValueAsString(user);
         mockMvc.perform(post("/user").content(userJson).contentType
                 (MediaType.APPLICATION_JSON)).andExpect(status().isOk());
         assertEquals(1,UserController.users.size());
+    }
+
+    @Test
+    void nameShouldNotLongerThan8()throws Exception {
+        User user=new User("Alibaba12",18,"male","a@b.com","11234567890");
+        ObjectMapper objectMapper=new ObjectMapper();
+        String userJson=objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/user").content(userJson).contentType
+                (MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
     }
 }
 
