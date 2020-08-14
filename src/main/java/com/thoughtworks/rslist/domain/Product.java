@@ -5,77 +5,50 @@ import lombok.Data;
 import javax.validation.constraints.*;
 
 @Data
-public class User {
-@Size(max = 8)
+public class Product {
 @NotNull
     private String name;
 @NotNull
-    private String gender;
-@Min(18)
-@Max(100)
-    private int age;
-@Email
-    private String email;
-@Pattern(regexp = "1\\d{10}")
-    private String phone;
-    private int vote=10;
+    private int price;
+@NotNull
+    private int number;
+@NotNull
+    private String unit;
 
-    public User(){
+    public Product(){
     }
 
-    public User(String name, int age, String gender, String email, String phone){
+    public Product(String name, int price,int number,String unit){
         this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.email = email;
-        this.phone = phone;
+        this.price = price;
+        this.number = number;
+        this.unit = unit;
     }
 
-    public String getUserName() {
+    public String getProductName() {
         return name;
     }
 
-    public void setUserName(String name) {
+    public void setProductName(String name) {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+public int getPrice(){
+        return price;
+}
+    public void setPrice(int price) {
+        this.price = price;
     }
-
-    public void setAge(int age) {
-        this.age = age;
+    public int getNumber(){
+        return number;
     }
-
-    public String getGender() {
-        return gender;
+    public void setNumber(int number) {
+        this.number = number;
     }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getUnit(){
+        return unit;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public int getVote() {
-        return vote;
-    }
-
-    public void setVote(int vote) {
-        this.vote = vote;
+    public void setUnit(String unit ) {
+        this.unit = unit;
     }
 }
